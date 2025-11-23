@@ -10,26 +10,24 @@ const Navbar = ({ theme, toggleTheme }) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const navClasses = isDark
+    ? "navbar navbar-expand-lg navbar-dark bg-black sticky-top py-3 shadow-sm"
+    : "navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3 shadow-sm";
+
   return (
-    <nav
-      className={`navbar navbar-expand-lg sticky-top py-3 shadow-sm ${
-        isDark ? "navbar-dark bg-black" : "navbar-light bg-white border-bottom"
-      }`}
-      style={{ backdropFilter: "blur(10px)" }}
-    >
+    <nav className={navClasses} style={{ backdropFilter: "blur(10px)" }}>
       <div className="container">
         {/* Brand */}
         <Link className="navbar-brand fw-bold text-uppercase" to="/">
-          <span style={{ fontSize: "1.3rem", letterSpacing: "1px" }}>
+          <span style={{ fontSize: "1.3rem", letterSpacing: "0.08em" }}>
             Dwarkamai
           </span>
           <div
             className={`small mt-0 ${
               isDark ? "text-white-50" : "text-secondary"
             }`}
-            style={{ letterSpacing: ".5px" }}
           >
-            Tours & Travels
+            Tours &amp; Travels
           </div>
         </Link>
 
@@ -46,11 +44,10 @@ const Navbar = ({ theme, toggleTheme }) => {
         {/* Nav Items */}
         <div className="collapse navbar-collapse" id="navMenu">
           <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-4 gap-1">
-
             {["services", "buses", "reviews", "contact"].map((item) => (
               <li key={item} className="nav-item">
                 <button
-                  className="btn btn-link nav-link px-2 fw-medium"
+                  className="btn btn-link nav-link px-2 fw-semibold"
                   style={{ fontSize: "0.95rem" }}
                   onClick={() => handleScroll(item)}
                 >
@@ -60,21 +57,12 @@ const Navbar = ({ theme, toggleTheme }) => {
             ))}
 
             {/* CTA */}
-            <li className="nav-item">
+            <li className="nav-item ms-lg-2">
               <Link
                 to="/estimate"
-                className="btn px-4 py-2 fw-semibold rounded-pill shadow-sm"
-                style={{
-                  background: isDark ? "#ffffff22" : "#0d6efd",
-                  color: isDark ? "#fff" : "#fff",
-                  border: "none",
-                  backdropFilter: "blur(6px)",
-                  transition: "0.25s",
-                }}
-                onMouseEnter={(e) =>
-                  (e.target.style.transform = "scale(1.06)")
-                }
-                onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+                className={`btn rounded-pill px-4 fw-semibold ${
+                  isDark ? "btn-outline-light" : "btn-dark"
+                }`}
               >
                 Get Estimate
               </Link>
@@ -88,14 +76,16 @@ const Navbar = ({ theme, toggleTheme }) => {
                 style={{
                   width: "40px",
                   height: "40px",
-                  background: isDark ? "#ffffff" : "#2b2b2b",
-                  color: isDark ? "#000" : "#fff",
-                  transition: "0.25s",
+                  backgroundColor: isDark ? "#ffffff" : "#212529",
+                  color: isDark ? "#000000" : "#ffffff",
+                  transition: "transform 0.2s ease",
                 }}
                 onMouseEnter={(e) =>
-                  (e.target.style.transform = "scale(1.15)")
+                  (e.currentTarget.style.transform = "scale(1.08)")
                 }
-                onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
                 title="Toggle Light/Dark"
               >
                 {isDark ? "🌞" : "🌙"}

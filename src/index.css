@@ -1,6 +1,15 @@
-html {
-  scroll-behavior: smooth;
-}
 body {
   margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* No fixed background-color here OR keep it white only */
+  background-color: #ffffff;
+}
+
+.dark-input::placeholder {
+  color: #f1f1f1;
+  opacity: .6;
+}
+
+.dark-input {
+  color-scheme: dark;
 }

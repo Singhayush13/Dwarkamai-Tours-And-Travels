@@ -9,13 +9,15 @@ function App() {
   const [theme, setTheme] = useState("light"); // "light" | "dark"
 
   useEffect(() => {
-    // Apply theme class on body for background
+    // Remove Bootstrap background classes so they don't interfere
+    document.body.classList.remove("bg-dark", "bg-light", "text-light", "text-dark");
+
     if (theme === "dark") {
-      document.body.classList.add("bg-dark", "text-light");
-      document.body.classList.remove("bg-light", "text-dark");
+      document.body.style.backgroundColor = "#000000"; // pure black
+      document.body.style.color = "#ffffff";           // white text
     } else {
-      document.body.classList.add("bg-light", "text-dark");
-      document.body.classList.remove("bg-dark", "text-light");
+      document.body.style.backgroundColor = "#ffffff"; // pure white
+      document.body.style.color = "#000000";           // black text
     }
   }, [theme]);
 
