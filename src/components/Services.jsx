@@ -1,101 +1,177 @@
-import React from "react";
+// src/components/Services.jsx
+import React, { useEffect, useRef } from "react";
 import { Briefcase, PeopleFill, Compass } from "react-bootstrap-icons";
+import { gsap } from "gsap";
 
-const Services = ({ theme }) => {
+const SERVICES = [
+  {
+    id: "pilgrim",
+    title: "Pilgrim Tours",
+    text:
+      "Shirdi, Shani Shingnapur, Trimbakeshwar and curated one-day & multi-day pilgrim packages with experienced drivers.",
+    icon: <Compass size={26} />,
+  },
+  {
+    id: "corporate",
+    title: "Corporate & Events",
+    text:
+      "Reliable transport for corporate trips, team outings and events — punctual, professional and customer-focused.",
+    icon: <Briefcase size={26} />,
+  },
+  {
+    id: "family",
+    title: "Family Functions",
+    text:
+      "Weddings, celebrations and school trips — flexible coaches and friendly staff to handle group logistics.",
+    icon: <PeopleFill size={26} />,
+  },
+];
+
+export default function Services({ theme = "light" }) {
   const isDark = theme === "dark";
+  const rootRef = useRef(null);
 
-  const items = [
-    {
-      title: "Pilgrim Tours",
-      text: "Shirdi, Shani Shingnapur, Trimbakeshwar and more – curated one-day and multi-day packages.",
-      icon: <Compass size={32} />,
-    },
-    {
-      title: "Corporate & Events",
-      text: "Transport for corporate trips, team outings and conferences with punctual, reliable service.",
-      icon: <Briefcase size={32} />,
-    },
-    {
-      title: "Family Functions",
-      text: "Wedding events, celebrations, school trips – flexible and hassle-free group travel options.",
-      icon: <PeopleFill size={32} />,
-    },
-  ];
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".service-card");
+      gsap.from(rootRef.current.querySelector(".services-head"), { y: -8, opacity: 0, duration: 0.45, ease: "power3.out" });
+      gsap.from(cards, {
+        y: 18,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // color tokens — adjust for your design system if needed
+  const bg = isDark ? "#040506" : "#f8fafc";
+  const cardBg = isDark ? "linear-gradient(180deg,#071018,#051015)" : "#fff";
+  const muted = isDark ? "#9fb4c2" : "#6c757d";
+  const heading = isDark ? "#f8fbff" : "#0b1220";
+  const accent = isDark ? "#06b6d4" : "#0b1220";
 
   return (
     <section
       id="services"
+      ref={rootRef}
       className="py-5"
-      style={{ backgroundColor: isDark ? "#000000" : "#ffffff" }}
+      style={{ backgroundColor: bg, color: isDark ? "#e6eef8" : "#111827" }}
+      aria-label="Our Services"
     >
-      <div className="container text-center">
-        <h2 className={`fw-bold mb-2 ${isDark ? "text-white" : "text-dark"}`}>
-          Our Services
-        </h2>
+      <div className="container">
+        <div className="text-center services-head mb-4">
+          <h2 className="fw-bold mb-1" style={{ color: heading, letterSpacing: 0.2 }}>
+            Our Services
+          </h2>
+          <p className="mb-0" style={{ color: muted, maxWidth: 760, margin: "8px auto 0" }}>
+            Dwarkamai Tours &amp; Travels — safe, comfortable and well-organized travel across Maharashtra for families, groups and businesses.
+          </p>
+        </div>
 
-        <p
-          className="mb-4"
-          style={{
-            maxWidth: "650px",
-            margin: "auto",
-            color: isDark ? "#bfbfbf" : "#6c757d",
-          }}
-        >
-          Dwarkamai Tours & Travels is committed to providing safe, comfortable and 
-          well-organized travel services across Maharashtra for families, groups and companies.
-        </p>
-
-        <div className="row g-4 pt-2">
-          {items.map((service, index) => (
-            <div className="col-md-4" key={index}>
-              <div
-                className="card h-100 py-4 px-3 shadow-sm"
+        <div className="row gy-4">
+          {SERVICES.map((s) => (
+            <div key={s.id} className="col-12 col-md-6 col-lg-4">
+              <article
+                className="service-card h-100 d-flex flex-column"
+                role="article"
+                aria-labelledby={`svc-${s.id}-title`}
+                tabIndex={0}
                 style={{
-                  backgroundColor: isDark ? "#0f0f0f" : "#ffffff",
-                  border: isDark ? "1px solid rgba(255,255,255,0.2)" : "1px solid #e5e5e5",
-                  borderRadius: "14px",
-                  transition: "0.3s",
-                  color: isDark ? "#ffffff" : "#000000",
+                  background: cardBg,
+                  borderRadius: 14,
+                  padding: "28px 22px",
+                  border: isDark ? "1px solid rgba(255,255,255,0.04)" : "1px solid rgba(15,23,42,0.04)",
+                  boxShadow: isDark ? "0 10px 30px rgba(2,6,23,0.18)" : "0 8px 20px rgba(2,6,23,0.06)",
+                  transition: "transform .22s ease, box-shadow .22s ease",
+                  outline: "none",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-6px)";
-                  e.currentTarget.style.boxShadow = isDark
-                    ? "0 10px 30px rgba(255,255,255,0.08)"
-                    : "0 10px 30px rgba(0,0,0,0.15)";
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow = isDark ? "0 18px 50px rgba(6,182,212,0.06)" : "0 18px 50px rgba(2,6,23,0.08)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0px)";
-                  e.currentTarget.style.boxShadow = isDark
-                    ? "0 6px 18px rgba(255,255,255,0.03)"
-                    : "0 6px 18px rgba(0,0,0,0.08)";
+                  e.currentTarget.style.boxShadow = isDark ? "0 10px 30px rgba(2,6,23,0.12)" : "0 8px 20px rgba(2,6,23,0.06)";
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.transform = "translateY(-6px)";
+                  e.currentTarget.style.boxShadow = isDark ? "0 18px 50px rgba(6,182,212,0.06)" : "0 18px 50px rgba(2,6,23,0.08)";
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.transform = "translateY(0px)";
+                  e.currentTarget.style.boxShadow = isDark ? "0 10px 30px rgba(2,6,23,0.12)" : "0 8px 20px rgba(2,6,23,0.06)";
                 }}
               >
-                <div
-                  className="mb-3"
-                  style={{
-                    color: isDark ? "#ffffff" : "#0d6efd",
-                  }}
-                >
-                  {service.icon}
+                <div className="d-flex align-items-center mb-3">
+                  <div
+                    aria-hidden
+                    style={{
+                      width: 56,
+                      height: 56,
+                      borderRadius: 12,
+                      display: "inline-grid",
+                      placeItems: "center",
+                      marginRight: 14,
+                      background: isDark ? "linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01))" : "rgba(13,110,253,0.06)",
+                      color: isDark ? accent : "#0b1220",
+                      boxShadow: isDark ? "inset 0 1px 0 rgba(255,255,255,0.02)" : "none",
+                    }}
+                  >
+                    {s.icon}
+                  </div>
+
+                  <div style={{ flex: 1 }}>
+                    <h3 id={`svc-${s.id}-title`} className="h6 mb-0 fw-bold" style={{ color: heading }}>
+                      {s.title}
+                    </h3>
+                    <div style={{ color: muted, fontSize: 13, marginTop: 6 }}>{s.text}</div>
+                  </div>
                 </div>
 
-                <h5 className="fw-semibold">{service.title}</h5>
-                <p
-                  className="mb-0"
-                  style={{
-                    fontSize: "0.95rem",
-                    color: isDark ? "#bfbfbf" : "#6c757d",
-                  }}
-                >
-                  {service.text}
-                </p>
-              </div>
+                {/* CTA area aligned bottom */}
+                <div className="mt-auto d-flex gap-2 align-items-center">
+                  <a
+                    href="#contact"
+                    className="btn btn-sm rounded-pill"
+                    style={{
+                      background: isDark ? accent : "#0b1220",
+                      color: "#fff",
+                      padding: "8px 14px",
+                      boxShadow: isDark ? "0 8px 30px rgba(6,182,212,0.06)" : undefined,
+                      border: "none",
+                      fontWeight: 600,
+                      textDecoration: "none",
+                    }}
+                    aria-label={`Enquire about ${s.title}`}
+                  >
+                    Enquire
+                  </a>
+                </div>
+              </article>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        /* mobile tweaks */
+        @media (max-width: 768px) {
+          .service-card { padding: 20px; border-radius: 12px; }
+        }
+
+        /* ensure icons remain visible */
+        .service-card svg { display: block; }
+
+        /* make anchor look accessible on keyboard focus */
+        .service-card a:focus, .service-card button:focus {
+          outline: 3px solid rgba(6,182,212,0.12);
+          outline-offset: 2px;
+        }
+      `}</style>
     </section>
   );
-};
-
-export default Services;
+}
