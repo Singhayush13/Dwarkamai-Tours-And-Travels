@@ -1,8 +1,8 @@
 import React from "react";
 
 import ayushImg from "../assets/ayush.jpg";
-import jitendraImg from "../assets/jitendra.jpg";
-import satyamImg from "../assets/satyam.jpg";
+import jitendraImg from "../assets/Jitendra.jpg";
+import satyamImg from "../assets/Satyam.jpg";
 
 const reviews = [
   {
