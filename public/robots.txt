@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dwarkamai-tours-and-travels.vercel.app/sitemap.xml
