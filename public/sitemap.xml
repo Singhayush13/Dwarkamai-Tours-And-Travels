@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/about</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/services</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/fleet</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/destinations</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/packages</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/gallery</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/contact</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/booking</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/privacy-policy</loc></url>
-  <url><loc>https://dwarkamai-tours-and-travels.vercel.app/terms-and-conditions</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/about</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/services</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/fleet</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/destinations</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/packages</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/packages/shirdi-darshan</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/packages/shirdi-shani-shingnapur</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/packages/mumbai-pune</loc></url>
+  <url><loc>https://www.dwarkamaitravels.in/contact</loc></url>
 </urlset>

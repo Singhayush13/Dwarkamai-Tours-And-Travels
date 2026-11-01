@@ -8,25 +8,25 @@ export const services: Service[] = [
   {
     title: "Pilgrim Tours",
     description:
-      "Travel to Shirdi, Shani Shingnapur and Trimbakeshwar with a journey planned around your group.",
+      "Group bus and car travel for pilgrimages to Shirdi, Shani Shingnapur and Trimbakeshwar. Share your pickup point, dates and group size to enquire.",
     icon: "landmark",
   },
   {
-    title: "Corporate & Events",
+    title: "Company & Corporate Bookings",
     description:
-      "Group transport for corporate trips, team outings and events, with coach options for your group.",
+      "Arrange group transport for company outings, staff travel, corporate events and team picnics. Ask about bus and car options for your requirements.",
     icon: "briefcase",
   },
   {
-    title: "Family Functions",
+    title: "Wedding & Family Bookings",
     description:
-      "Coordinate travel for weddings, celebrations and family gatherings with a vehicle suited to your group.",
+      "Plan guest transport for weddings, family functions and celebrations, with vehicle options to suit your group and itinerary.",
     icon: "users",
   },
   {
-    title: "Custom Group Travel",
+    title: "Picnic & Group Bookings",
     description:
-      "Share your route and travel requirements to enquire about a trip tailored to your plans.",
+      "Enquire about buses or cars for picnics, day trips, group outings and custom routes across the Mumbai region and beyond.",
     icon: "route",
   },
 ];

@@ -11,7 +11,7 @@ import { gallery } from "../data/gallery";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function HomePage() {
-  usePageMeta("Comfortable Group & Pilgrim Travel", "Plan comfortable group journeys, pilgrim trips and coach hire with Dwarkamai Tours & Travels. Browse the fleet and enquire directly.");
+  usePageMeta("Bus & Car Hire in Vasai, Mumbai & Thane", "Dwarkamai Tours & Travels offers bus and car hire enquiries in Vasai, Nalasopara, Virar, Naigaon, Mumbai and Thane for company bookings, picnics, weddings, pilgrimages and group trips.");
 
   return (
     <>
@@ -20,9 +20,9 @@ export default function HomePage() {
         <div className="hero-inner">
           <div className="hero-copy">
             <p className="hero-kicker"><span /> YOUR JOURNEY, THOUGHTFULLY PLANNED</p>
-            <h1>Every journey<br />begins with <em>trust.</em></h1>
+            <h1>Bus &amp; car hire<br />for every <em>journey.</em></h1>
             <p className="hero-description">
-              Discover comfortable group journeys, memorable destinations and travel planned around you with Dwarkamai Tours &amp; Travels.
+              Bus and car hire enquiries from Vasai, Nalasopara, Virar and Naigaon across Mumbai and Thane. Plan company trips, picnics, weddings, pilgrimages and more.
             </p>
             <div className="hero-actions">
               <Link className="button button-gold" to="/fleet">Explore our fleet <ArrowUpRight size={17} /></Link>
@@ -50,7 +50,7 @@ export default function HomePage() {
             <h2>Space for the people.<br /><em>Room for the journey.</em></h2>
           </div>
           <div className="intro-copy">
-            <p>From pilgrim journeys to family gatherings and group outings, the right coach makes travelling together feel easy.</p>
+            <p>From Vasai, Nalasopara, Virar and Naigaon to Mumbai, Thane and destinations beyond, enquire about bus or car travel for your group.</p>
             <Link className="text-link" to="/about">A little about us <ArrowUpRight size={17} /></Link>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default function HomePage() {
 
       <section className="section-block fleet-section">
         <div className="section-shell">
-          <SectionHeading eyebrow="THE FLEET" title="Choose your kind of comfort" description="Our listed fleet includes 20, 32 and 44 seater non-AC buses. Ask us which one suits your group." link={{ label: "View our fleet", to: "/fleet" }} />
+          <SectionHeading eyebrow="THE FLEET" title="Choose your kind of comfort" description="Our listed fleet includes 20, 32 and 44 seater non-AC buses. Ask us about other bus or car options, current availability and suitability for your trip." link={{ label: "View our fleet", to: "/fleet" }} />
           <FleetCards vehicles={fleet} />
         </div>
       </section>
@@ -87,9 +87,21 @@ export default function HomePage() {
           </div>
           <div className="why-points">
             <article><span>01</span><div><h3>Options for groups</h3><p>Compare our listed 20, 32 and 44 seater non-AC buses for your group.</p></div></article>
-            <article><span>02</span><div><h3>Journeys for your occasion</h3><p>Explore pilgrim tours, family functions, corporate trips and group outings.</p></div></article>
-            <article><span>03</span><div><h3>Clear next steps</h3><p>Review your enquiry, then call or choose to share it through WhatsApp.</p></div></article>
+            <article><span>02</span><div><h3>For every occasion</h3><p>Enquire about company bookings, picnics, weddings, pilgrimages and family trips.</p></div></article>
+            <article><span>03</span><div><h3>Experienced, non-drinking drivers</h3><p>Our business provides highly experienced drivers who do not drink. Contact us to discuss your journey requirements.</p></div></article>
           </div>
+        </div>
+      </section>
+
+      <section className="section-block section-soft">
+        <div className="section-shell">
+          <SectionHeading
+            eyebrow="LOCAL BUS & CAR HIRE"
+            title="Serving Vasai, Nalasopara, Virar, Naigaon, Mumbai & Thane"
+            description="Dwarkamai Tours & Travels is based in Vasai and takes enquiries for local and outstation group journeys. Tell us your pickup location, destination, date and passenger count so we can discuss the right vehicle."
+            link={{ label: "Check availability", to: "/booking" }}
+          />
+          <p>Whether you need a 44 seater bus for a company outing, guest transport for a wedding, a vehicle for a picnic, or a car for a smaller group, contact us to discuss options. Vehicle type, availability, route arrangements and pricing are confirmed directly with the business.</p>
         </div>
       </section>
 

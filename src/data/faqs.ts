@@ -17,6 +17,21 @@ export const faqs = [
   {
     question: "What vehicles can I enquire about?",
     answer:
-      "The listed fleet includes 20, 32 and 44 seater non-AC buses. Contact the business to check current availability and suitability for your trip.",
+      "The website lists 20, 32 and 44 seater non-AC buses. Bus and car options may also be available for different group sizes and trip requirements. Contact us to confirm the vehicle, amenities and availability for your dates.",
+  },
+  {
+    question: "Which areas do you serve?",
+    answer:
+      "We mainly serve Vasai, Nalasopara, Virar and Naigaon, as well as Mumbai and Thane. Share your pickup point and destination to discuss your route.",
+  },
+  {
+    question: "Can I enquire about company, picnic or wedding transport?",
+    answer:
+      "Yes. You can enquire about company bookings, picnics, weddings, family functions, pilgrim tours and other group journeys. Share your date, route, pickup point and passenger count so we can discuss suitable options.",
+  },
+  {
+    question: "Who drives the vehicles?",
+    answer:
+      "The business says it provides highly experienced drivers who do not drink. Contact us to discuss any specific driver or journey requirements.",
   },
 ];
