@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
     const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
-    if (themeColor) themeColor.content = theme === "dark" ? "#101b20" : "#fcfbf8";
+    if (themeColor) themeColor.content = theme === "dark" ? "#151c2d" : "#fbf8f3";
     try {
       window.localStorage.setItem("dwarkamai-theme", theme);
     } catch (error) {

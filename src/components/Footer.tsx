@@ -1,4 +1,4 @@
-import { ArrowUpRight, Heart, Phone } from "lucide-react";
+import { ArrowUpRight, BusFront, Heart, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { contactConfig } from "../config/contact";
 import { navigation } from "../data/site";
@@ -9,7 +9,7 @@ export function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <Link className="brand brand-inverse" to="/">
-            <span className="brand-mark" aria-hidden="true">D</span>
+            <span className="brand-mark" aria-hidden="true"><BusFront size={22} strokeWidth={1.8} /></span>
             <span className="brand-name">
               <strong>Dwarkamai</strong>
               <small>Tours &amp; Travels</small>

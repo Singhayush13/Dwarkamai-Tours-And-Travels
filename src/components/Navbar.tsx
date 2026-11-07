@@ -1,19 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ArrowUpRight, Menu, Moon, Phone, Sun, X } from "lucide-react";
+import { ArrowUpRight, BusFront, Menu, Moon, Phone, Sun, X } from "lucide-react";
 import { contactConfig } from "../config/contact";
 import { navigation } from "../data/site";
 import { useTheme } from "./ThemeContext";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
+  useEffect(() => {
+    const updateScrollState = () => setScrolled(window.scrollY > 8);
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   return (
-    <header className="site-header">
+    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
       <nav className="nav-shell" aria-label="Main navigation">
-        <Link className="brand" to="/" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true"><span>D</span></span>
+        <Link className="brand" to="/" onClick={() => setOpen(false)} aria-label="Dwarkamai Tours & Travels home">
+          <span className="brand-mark" aria-hidden="true"><BusFront size={22} strokeWidth={1.8} /></span>
           <span className="brand-name">
             <strong>Dwarkamai</strong>
             <small>Tours &amp; Travels</small>
