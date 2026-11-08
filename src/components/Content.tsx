@@ -83,12 +83,26 @@ export function ServiceCards({ services }: { services: Service[] }) {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, delay: index * 0.07 }}
           >
-            <span className="service-icon"><Icon size={22} strokeWidth={1.7} /></span>
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-            <Link className="card-link" to={`/booking?type=${encodeURIComponent(service.title)}`}>
-              Enquire about this <ArrowUpRight size={16} />
-            </Link>
+            <div className="service-photo">
+              <img src={service.image} alt={service.imageAlt} loading="lazy" />
+              {service.photoNote && <span className="service-photo-note">{service.photoNote}</span>}
+            </div>
+            <div className="service-content">
+              <span className="service-icon"><Icon size={22} strokeWidth={1.7} /></span>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <Link className="card-link" to={`/booking?type=${encodeURIComponent(service.title)}`}>
+                Enquire about this <ArrowUpRight size={16} />
+              </Link>
+              {service.imageCredit && (
+                <div className="service-photo-credit">
+                  <a href={service.imageCredit.href} target="_blank" rel="noreferrer">{service.imageCredit.label}</a>
+                  {service.imageCredit.licenseLabel && service.imageCredit.licenseHref && (
+                    <> · <a href={service.imageCredit.licenseHref} target="_blank" rel="noreferrer">{service.imageCredit.licenseLabel}</a></>
+                  )}
+                </div>
+              )}
+            </div>
           </motion.article>
         );
       })}
@@ -138,7 +152,7 @@ export function DestinationCards({ destinations }: { destinations: Destination[]
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.45, delay: index % 3 * 0.07 }}
         >
-          <img src={destination.image} alt={`Coach for group travel to ${destination.name}`} loading="lazy" />
+          <img src={destination.image} alt={destination.imageAlt} loading="lazy" />
           <div className="destination-overlay" />
           <div className="destination-content">
             <span className="destination-type"><MapPin size={13} /> {destination.category}</span>
@@ -147,6 +161,15 @@ export function DestinationCards({ destinations }: { destinations: Destination[]
             <Link className="destination-link" to={`/booking?destination=${encodeURIComponent(destination.name)}`}>
               Plan this journey <ArrowUpRight size={16} />
             </Link>
+            {destination.photoNote && <small className="destination-photo-note">{destination.photoNote}</small>}
+            {destination.imageCredit && (
+              <small className="destination-photo-credit">
+                <a href={destination.imageCredit.href} target="_blank" rel="noreferrer">{destination.imageCredit.label}</a>
+                {destination.imageCredit.licenseLabel && destination.imageCredit.licenseHref && (
+                  <> · <a href={destination.imageCredit.licenseHref} target="_blank" rel="noreferrer">{destination.imageCredit.licenseLabel}</a></>
+                )}
+              </small>
+            )}
           </div>
         </motion.article>
       ))}

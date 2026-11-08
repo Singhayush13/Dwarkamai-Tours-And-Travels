@@ -1,10 +1,10 @@
 import { ArrowDown, ArrowUpRight, Check, MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroBus from "../assets/optimized/bus1.jpg";
+import heroBus from "../assets/dwarkamai-bus-side.jpeg";
 import { DestinationCards, FaqList, FleetCards, PackageCards, SectionHeading, ServiceCards } from "../components/Content";
 import { faqs } from "../data/faqs";
 import { fleet } from "../data/fleet";
-import { destinations } from "../data/destinations";
+import { featuredDestinations } from "../data/destinations";
 import { packages } from "../data/packages";
 import { services } from "../data/services";
 import { gallery } from "../data/gallery";
@@ -59,14 +59,14 @@ export default function HomePage() {
       <section className="section-block section-soft">
         <div className="section-shell">
           <SectionHeading eyebrow="WHAT WE CAN HELP WITH" title="A journey for every occasion" description="Tell us what brings your group together. We’ll help you explore the right travel option." link={{ label: "All services", to: "/services" }} />
-          <ServiceCards services={services.slice(0, 3)} />
+          <ServiceCards services={services} />
         </div>
       </section>
 
       <section className="section-block">
         <div className="section-shell">
-          <SectionHeading eyebrow="TRAVEL TOGETHER" title="Places worth the journey" description="Explore some of the destinations mentioned in our travel services and enquire about your route." link={{ label: "Explore destinations", to: "/destinations" }} />
-          <DestinationCards destinations={destinations.slice(0, 3)} />
+          <SectionHeading eyebrow="TRAVEL TOGETHER" title="Places worth the journey" description="From temple visits to theme parks, resorts and picnics, explore ideas for your next group outing." link={{ label: "Explore destinations", to: "/destinations" }} />
+          <DestinationCards destinations={featuredDestinations} />
         </div>
       </section>
 

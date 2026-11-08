@@ -11,15 +11,15 @@ export default function DestinationsPage() {
   const filtered = useMemo(
     () => destinations.filter((destination) =>
       (category === "All" || destination.category === category)
-      && `${destination.name} ${destination.description}`.toLowerCase().includes(query.trim().toLowerCase()),
+      && `${destination.name} ${destination.category} ${destination.description}`.toLowerCase().includes(query.trim().toLowerCase()),
     ),
     [category, query],
   );
-  usePageMeta("Destinations", "Discover destinations mentioned by Dwarkamai Tours & Travels and enquire about coach travel for your group.");
+  usePageMeta("Group Trips, Pilgrimages & Outings", "Explore group travel enquiries from Vasai–Virar to Shirdi, Trimbakeshwar, Imagicaa, Wet'nJoy, Water Kingdom, resorts and more.");
   return (
     <div className="page-wrap">
       <div className="section-shell">
-        <PageHeading eyebrow="WHERE TO NEXT?" title={<>Good things happen<br />along the <em>way.</em></>} description="Explore a few places mentioned in our travel services. Tell us your route and we’ll help you start an enquiry." />
+        <PageHeading eyebrow="WHERE TO NEXT?" title={<>Good things happen<br />along the <em>way.</em></>} description="Explore pilgrimage visits, city journeys and group outings to theme parks or resorts. Tell us your route, dates and group size to start an enquiry." />
         <div className="destination-tools">
           <label className="search-field">
             <Search size={18} />
