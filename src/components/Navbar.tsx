@@ -30,7 +30,7 @@ export function Navbar() {
     <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
       <nav className="nav-shell" aria-label="Main navigation">
         <Link className="brand" to="/" onClick={() => setOpen(false)} aria-label="Dwarkamai Tours & Travels home">
-          <span className="brand-mark" aria-hidden="true"><BusFront size={22} strokeWidth={1.8} /></span>
+          <span className="brand-mark" aria-hidden="true"><BusFront size={25} strokeWidth={1.9} /></span>
           <span className="brand-name">
             <strong>Dwarkamai</strong>
             <small>Tours &amp; Travels</small>
@@ -75,7 +75,7 @@ export function Navbar() {
               <Phone size={14} /> {contactConfig.phoneDisplay}
             </a>
             <Link className="button button-dark nav-cta" to="/booking" onClick={() => setOpen(false)}>
-              Plan your trip <ArrowUpRight size={16} />
+              Book now <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>

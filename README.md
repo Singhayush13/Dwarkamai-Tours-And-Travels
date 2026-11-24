@@ -25,7 +25,7 @@ Import the repository into Vercel and use the Vite defaults (`npm run build`, ou
 ## Business content
 
 - Contact details and WhatsApp settings: `src/config/contact.ts`
-- Services, fleet, destinations, trip ideas and gallery: `src/data/`
+- Services, fleet and destinations: `src/data/`
 - The shared light/dark theme follows the system preference by default and saves the visitor’s choice in browser storage.
 - Existing photos are retained in `src/assets/`
 - Static route metadata: `index.html`; crawler files: `public/robots.txt` and `public/sitemap.xml`

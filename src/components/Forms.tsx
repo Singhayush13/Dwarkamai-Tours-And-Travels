@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,7 +17,14 @@ const tripSchema = z.object({
     .int("Use a whole number of travellers.")
     .min(1, "At least one traveller is required.")
     .max(1000, "Enter 1,000 travellers or fewer."),
-  tripType: z.enum(["Pilgrimage", "Family trip", "Corporate / event", "Other"]),
+  tripType: z.enum([
+    "Pilgrimage",
+    "Family trip",
+    "Corporate / event",
+    "Wedding / family function",
+    "Picnic / group outing",
+    "Other",
+  ]),
   vehicle: z.string().optional(),
   requirements: z.string().max(1000).optional(),
 }).superRefine((data, ctx) => {
@@ -35,6 +43,16 @@ const tripSchema = z.object({
 });
 
 type TripFormData = z.infer<typeof tripSchema>;
+
+function getInitialTripType(value: string): TripFormData["tripType"] {
+  const normalized = value.toLowerCase();
+  if (normalized.includes("pilgrim")) return "Pilgrimage";
+  if (normalized.includes("wedding")) return "Wedding / family function";
+  if (normalized.includes("picnic")) return "Picnic / group outing";
+  if (normalized.includes("family")) return "Family trip";
+  if (normalized.includes("corporate") || normalized.includes("company")) return "Corporate / event";
+  return "Other";
+}
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Enter your name.").max(100),
@@ -69,13 +87,6 @@ export function TripForm({
   initialTripType?: string;
 }) {
   const [summary, setSummary] = useState<TripFormData | null>(null);
-  const initialTripTypeValue: TripFormData["tripType"] = initialTripType.toLowerCase().includes("pilgrim")
-    ? "Pilgrimage"
-    : initialTripType.toLowerCase().includes("family")
-      ? "Family trip"
-      : initialTripType.toLowerCase().includes("corporate")
-        ? "Corporate / event"
-        : "Other";
   const {
     register,
     handleSubmit,
@@ -89,7 +100,7 @@ export function TripForm({
       departureDate: "",
       returnDate: "",
       travellers: 1,
-      tripType: initialTripTypeValue,
+      tripType: getInitialTripType(initialTripType),
       vehicle: initialVehicle,
       requirements: "",
     },
@@ -159,6 +170,8 @@ export function TripForm({
               <option>Pilgrimage</option>
               <option>Family trip</option>
               <option>Corporate / event</option>
+              <option>Wedding / family function</option>
+              <option>Picnic / group outing</option>
               <option>Other</option>
             </select>
           </label>
@@ -208,6 +221,99 @@ export function TripForm({
             <button className="button button-quiet" type="button" onClick={() => setSummary(null)}>Edit details</button>
           </div>
           <p className="privacy-note">WhatsApp opens with your message prepared. It is only sent if you choose to send it there.</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function QuickBookingForm() {
+  const [draft, setDraft] = useState({
+    pickup: "",
+    destination: "",
+    date: "",
+    travellers: "1",
+    vehicle: "",
+    requirements: "",
+  });
+  const [whatsAppUrl, setWhatsAppUrl] = useState("");
+  const [isReady, setIsReady] = useState(false);
+  const today = new Date();
+  const minDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+  function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const pickup = String(formData.get("pickup") ?? "").trim();
+    const destination = String(formData.get("destination") ?? "").trim();
+    const date = String(formData.get("date") ?? "");
+    const travellers = String(formData.get("travellers") ?? "");
+    const vehicle = String(formData.get("vehicle") ?? "");
+    const requirements = String(formData.get("requirements") ?? "").trim();
+    const message = [
+      `Hello ${contactConfig.businessName},`,
+      "",
+      "I would like to enquire about a trip.",
+      `Pickup: ${pickup}`,
+      `Destination: ${destination}`,
+      `Travel date: ${formattedDate(date)}`,
+      `Travellers: ${travellers}`,
+      ...(vehicle ? [`Preferred vehicle: ${vehicle}`] : []),
+      ...(requirements ? [`Additional requirements: ${requirements}`] : []),
+      "",
+      "Please share availability and pricing.",
+    ].join("\n");
+    setDraft({ pickup, destination, date, travellers, vehicle, requirements });
+    setWhatsAppUrl(createWhatsAppLink(message));
+    setIsReady(true);
+  }
+
+  return (
+    <div className="quick-booking-panel">
+      <div className="quick-booking-heading">
+        <p className="eyebrow">A QUICK START</p>
+        <h2>Where would you like to go?</h2>
+        <p>Share the basics. Review your message in WhatsApp before you send it.</p>
+      </div>
+      {!isReady ? (
+        <form className="quick-booking-form" onSubmit={prepareEnquiry}>
+          <label className="field">
+            <span>Pickup</span>
+            <input name="pickup" autoComplete="address-level2" placeholder="Vasai, Virar..." minLength={2} maxLength={100} defaultValue={draft.pickup} required />
+          </label>
+          <label className="field">
+            <span>Destination</span>
+            <input name="destination" placeholder="Where to?" minLength={2} maxLength={100} defaultValue={draft.destination} required />
+          </label>
+          <label className="field">
+            <span>Travel date</span>
+            <input name="date" type="date" min={minDate} defaultValue={draft.date} required />
+          </label>
+          <label className="field">
+            <span>Passengers</span>
+            <input name="travellers" type="number" min="1" max="1000" defaultValue={draft.travellers} required />
+          </label>
+          <label className="field">
+            <span>Vehicle <small>(optional)</small></span>
+            <select name="vehicle" defaultValue={draft.vehicle}>
+              <option value="">Help me choose</option>
+              {fleet.map((vehicle) => (
+                <option key={vehicle.name} value={vehicle.name}>{vehicle.name}</option>
+              ))}
+              <option value="Car option">Car option</option>
+            </select>
+          </label>
+          <label className="field field-wide">
+            <span>Additional requirements <small>(optional)</small></span>
+            <textarea name="requirements" rows={1} maxLength={500} placeholder="Anything else we should know?" defaultValue={draft.requirements} />
+          </label>
+          <button className="button button-dark" type="submit">Prepare enquiry <ArrowUpRight size={17} /></button>
+        </form>
+      ) : (
+        <div className="quick-booking-ready" aria-live="polite">
+          <p>Your trip details are ready to share. Nothing has been booked or sent yet.</p>
+          <a className="button button-whatsapp" href={whatsAppUrl} target="_blank" rel="noreferrer">Continue on WhatsApp <ArrowUpRight size={17} /></a>
+          <button className="text-link" type="button" onClick={() => setIsReady(false)}>Edit trip details</button>
         </div>
       )}
     </div>

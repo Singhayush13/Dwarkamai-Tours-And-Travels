@@ -1,11 +1,9 @@
 export const navigation = [
   { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
+  { label: "About Us", to: "/about" },
   { label: "Fleet", to: "/fleet" },
+  { label: "Services", to: "/services" },
   { label: "Destinations", to: "/destinations" },
-  { label: "Packages", to: "/packages" },
-  { label: "Gallery", to: "/gallery" },
   { label: "Contact", to: "/contact" },
 ] as const;
 

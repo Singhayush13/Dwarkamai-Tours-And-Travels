@@ -1,4 +1,4 @@
-import { ArrowUpRight, BusFront, Heart, Phone } from "lucide-react";
+import { BusFront, Heart, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { contactConfig } from "../config/contact";
 import { navigation } from "../data/site";
@@ -36,9 +36,9 @@ export function Footer() {
           <a className="footer-call" href={contactConfig.phoneLink}>
             <Phone size={17} /> {contactConfig.phoneDisplay}
           </a>
-          <Link className="footer-whatsapp" to="/booking">
-            Share trip details <ArrowUpRight size={16} />
-          </Link>
+          <a className="footer-whatsapp" href={`https://wa.me/${contactConfig.whatsappNumber}`} target="_blank" rel="noreferrer">
+            Message on WhatsApp <MessageCircle size={16} />
+          </a>
         </div>
       </div>
       <div className="footer-bottom">

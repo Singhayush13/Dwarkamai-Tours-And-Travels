@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { MotionConfig } from "motion/react";
 import { Footer } from "./components/Footer";
+import { ContactActions } from "./components/ContactActions";
 import { Navbar } from "./components/Navbar";
 import { ThemeProvider } from "./components/ThemeProvider";
 const NotFoundPage = lazy(() => import("./components/NotFound"));
@@ -11,8 +12,6 @@ const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const FleetPage = lazy(() => import("./pages/FleetPage"));
 const DestinationsPage = lazy(() => import("./pages/DestinationsPage"));
-const PackagesPage = lazy(() => import("./pages/PackagesPage"));
-const GalleryPage = lazy(() => import("./pages/GalleryPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage").then((module) => ({ default: module.ContactPage })));
 const BookingPage = lazy(() => import("./pages/ContactPage").then((module) => ({ default: module.BookingPage })));
 const PrivacyPage = lazy(() => import("./pages/LegalPage").then((module) => ({ default: module.PrivacyPage })));
@@ -40,9 +39,6 @@ export default function App() {
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/fleet" element={<FleetPage />} />
               <Route path="/destinations" element={<DestinationsPage />} />
-              <Route path="/packages" element={<PackagesPage />} />
-              <Route path="/packages/:slug" element={<PackagesPage />} />
-              <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/booking" element={<BookingPage />} />
               <Route path="/privacy-policy" element={<PrivacyPage />} />
@@ -52,6 +48,7 @@ export default function App() {
           </Suspense>
         </main>
         <Footer />
+        <ContactActions />
       </ThemeProvider>
     </MotionConfig>
   );

@@ -1,13 +1,12 @@
 import { ArrowDown, ArrowUpRight, Check, MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBus from "../assets/dwarkamai-bus-side.jpeg";
-import { DestinationCards, FaqList, FleetCards, PackageCards, SectionHeading, ServiceCards } from "../components/Content";
+import { DestinationCards, FaqList, FleetCards, SectionHeading, ServiceCards } from "../components/Content";
 import { faqs } from "../data/faqs";
 import { fleet } from "../data/fleet";
 import { featuredDestinations } from "../data/destinations";
-import { packages } from "../data/packages";
 import { services } from "../data/services";
-import { gallery } from "../data/gallery";
+import { QuickBookingForm } from "../components/Forms";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function HomePage() {
@@ -19,16 +18,16 @@ export default function HomePage() {
         <div className="hero-texture" aria-hidden="true" />
         <div className="hero-inner">
           <div className="hero-copy">
-            <p className="hero-kicker"><span /> YOUR JOURNEY, THOUGHTFULLY PLANNED</p>
-            <h1>Bus &amp; car hire<br />for every <em>journey.</em></h1>
+            <p className="hero-kicker"><span /> GROUP TRAVEL FROM VASAI &amp; MUMBAI</p>
+            <h1>Your journey,<br />thoughtfully <em>planned.</em></h1>
             <p className="hero-description">
-              Bus and car hire enquiries from Vasai, Nalasopara, Virar and Naigaon across Mumbai and Thane. Plan company trips, picnics, weddings, pilgrimages and more.
+              Group bus and car travel enquiries for pilgrimages, weddings, company outings and picnics. Starting in Vasai, Nalasopara, Virar or Naigaon? Tell us where you’re headed.
             </p>
             <div className="hero-actions">
-              <Link className="button button-gold" to="/fleet">Explore our fleet <ArrowUpRight size={17} /></Link>
-              <Link className="hero-secondary" to="/booking">Plan your trip <MoveRight size={17} /></Link>
+              <Link className="button button-gold" to="/booking">Book your journey <ArrowUpRight size={17} /></Link>
+              <Link className="hero-secondary" to="/fleet">Explore our fleet <MoveRight size={17} /></Link>
             </div>
-            <div className="hero-footnote"><Check size={15} /> Enquire directly for availability and pricing</div>
+            <div className="hero-footnote"><Check size={15} /> Enquiries for 20, 32 &amp; 44 seater non-AC buses</div>
           </div>
           <div className="hero-art">
             <div className="hero-image-wrap">
@@ -40,6 +39,12 @@ export default function HomePage() {
         </div>
         <a className="scroll-hint" href="#intro"><span>SCROLL TO DISCOVER</span><ArrowDown size={15} /></a>
         <span className="hero-coordinate">MAHARASHTRA · INDIA</span>
+      </section>
+
+      <section className="quick-booking-section" aria-label="Quick trip enquiry">
+        <div className="section-shell">
+          <QuickBookingForm />
+        </div>
       </section>
 
       <section className="intro-section" id="intro">
@@ -105,49 +110,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="route-band">
-        <div className="section-shell route-layout">
-          <div className="route-copy">
-            <p className="eyebrow">A ROUTE THAT’S YOURS</p>
-            <h2>Make the way<br />part of the <em>memory.</em></h2>
-            <p>Whether it’s a pilgrimage or a group outing, start with the places you want to go. Share your plan and enquire about the journey.</p>
-            <Link className="button button-gold" to="/booking">Start planning <ArrowUpRight size={17} /></Link>
-          </div>
-          <div className="route-map" aria-label="Illustrated travel route">
-            <svg viewBox="0 0 620 280" role="img" aria-labelledby="route-title">
-              <title id="route-title">An illustrated route connecting destinations</title>
-              <path className="route-dash" d="M65 212 C140 212 120 91 239 105 S347 238 421 148 S517 71 557 80" />
-              <circle className="route-stop" cx="65" cy="212" r="7" />
-              <circle className="route-stop" cx="239" cy="105" r="7" />
-              <circle className="route-stop" cx="421" cy="148" r="7" />
-              <circle className="route-stop" cx="557" cy="80" r="7" />
-            </svg>
-            <span className="route-label route-label-one">Your starting point</span>
-            <span className="route-label route-label-two">Shirdi</span>
-            <span className="route-label route-label-three">A stop along the way</span>
-            <span className="route-label route-label-four">Your destination</span>
-            <span className="route-stamp">GO<br />YOUR<br />OWN WAY</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-block">
+      <section className="planning-steps">
         <div className="section-shell">
-          <SectionHeading eyebrow="TRIP IDEAS" title="Start with an idea" description="These are enquiry starting points, not fixed itineraries. Tell us your dates and preferences for a conversation." link={{ label: "See all trip ideas", to: "/packages" }} />
-          <PackageCards packages={packages.slice(0, 2)} />
-        </div>
-      </section>
-
-      <section className="section-block section-soft">
-        <div className="section-shell">
-          <SectionHeading eyebrow="A LOOK AT THE JOURNEY" title="A few frames from our fleet" description="See the coaches and vehicles featured in our travel photos." link={{ label: "Visit the gallery", to: "/gallery" }} />
-          <div className="gallery-preview-grid">
-            {gallery.slice(0, 3).map((item) => (
-              <Link className="gallery-preview-tile" key={item.src} to="/gallery">
-                <img src={item.src} alt={item.alt} loading="lazy" />
-                <span>{item.category} <ArrowUpRight size={15} /></span>
-              </Link>
-            ))}
+          <div className="planning-heading">
+            <p className="eyebrow">A SIMPLE WAY TO GET STARTED</p>
+            <h2>From first thought<br />to <em>trip enquiry.</em></h2>
+          </div>
+          <div className="planning-step-grid">
+            <article><span>01</span><h3>Tell us the plan</h3><p>Share your pickup, destination, date and passenger count.</p></article>
+            <article><span>02</span><h3>Choose how to connect</h3><p>Review your trip details and call or continue on WhatsApp.</p></article>
+            <article><span>03</span><h3>Confirm directly</h3><p>Discuss vehicle options, availability and pricing with the business.</p></article>
           </div>
         </div>
       </section>

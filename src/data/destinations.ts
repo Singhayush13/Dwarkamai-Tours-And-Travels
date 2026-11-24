@@ -9,6 +9,7 @@ export interface Destination {
   name: string;
   category: "Pilgrimage" | "City trips" | "Resorts & picnics" | "Theme parks";
   description: string;
+  highlights: string;
   image: string;
   imageAlt: string;
   imageCredit?: { label: string; href: string; licenseLabel?: string; licenseHref?: string };
@@ -21,6 +22,7 @@ export const destinations: Destination[] = [
     category: "Pilgrimage",
     description:
       "Enquire about group bus and car travel to Sai Baba's temple from Vasai, Nalasopara, Virar, Naigaon and across Mumbai.",
+    highlights: "Shri Sai Baba Temple",
     image: shirdiTemple,
     imageAlt: "Exterior of Shri Sai Baba Temple in Shirdi",
     imageCredit: {
@@ -35,6 +37,7 @@ export const destinations: Destination[] = [
     category: "Pilgrimage",
     description:
       "Plan a group visit to Shani Shingnapur. Share your pickup point, travel dates and passenger count to discuss an itinerary.",
+    highlights: "Shani Temple",
     image: shaniTemple,
     imageAlt: "Shani Temple at Shani Shingnapur",
     imageCredit: {
@@ -47,6 +50,7 @@ export const destinations: Destination[] = [
     category: "Pilgrimage",
     description:
       "Ask about bus and car travel to Trimbakeshwar Temple, with pickup enquiries from the Vasai–Virar area, Mumbai and Thane.",
+    highlights: "Trimbakeshwar Shiva Temple",
     image: trimbakeshwarTemple,
     imageAlt: "Trimbakeshwar Shiva Temple in Trimbak",
     imageCredit: {
@@ -59,6 +63,7 @@ export const destinations: Destination[] = [
     category: "City trips",
     description:
       "Arrange group travel into Mumbai for city visits, family outings and events, with pickup enquiries from the western suburbs.",
+    highlights: "City visits and group outings",
     image: busSide,
     imageAlt: "Dwarkamai branded coach ready for a group trip",
   },
@@ -67,6 +72,7 @@ export const destinations: Destination[] = [
     category: "City trips",
     description:
       "Enquire about bus and car travel for group journeys to Pune. Share your route, dates and passenger count for an availability discussion.",
+    highlights: "City visits and outstation group travel",
     image: busSide,
     imageAlt: "Dwarkamai branded coach ready for a group trip",
   },
@@ -75,6 +81,7 @@ export const destinations: Destination[] = [
     category: "Theme parks",
     description:
       "Enquire about group trips to Imagicaa near Khopoli, Wet'nJoy or Water Kingdom. Choose your venue and share your route and travel date.",
+    highlights: "Imagicaa · Wet’nJoy · Water Kingdom",
     image: waterParkIllustration,
     imageAlt: "Illustrative water-park slides",
     photoNote: "Illustrative photo; not a photo of Imagicaa, Wet'nJoy or Water Kingdom.",
@@ -84,6 +91,7 @@ export const destinations: Destination[] = [
     category: "Resorts & picnics",
     description:
       "Plan a day trip or group outing to a resort you choose around Vasai–Virar and nearby areas. Ask about bus and car options.",
+    highlights: "A resort or picnic venue you choose",
     image: resortIllustration,
     imageAlt: "Illustrative resort swimming pool",
     photoNote: "Illustrative image; not a specific local resort.",

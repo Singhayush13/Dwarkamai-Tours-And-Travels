@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { PageHeading, SectionHeading, FleetCards } from "../components/Content";
 import { fleet } from "../data/fleet";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -20,7 +22,14 @@ export default function FleetPage() {
           ))}
         </div>
         <FleetCards vehicles={filtered} />
-        <p className="page-note">The fleet information shown here is limited to the vehicle types and seating capacities listed by the business. Ask us directly about amenities, availability and trip suitability.</p>
+        <div className="fleet-enquiry-note">
+          <div>
+            <p className="eyebrow">NEED SOMETHING DIFFERENT?</p>
+            <h2>Not sure which vehicle suits your trip?</h2>
+            <p>The website lists 20, 32 and 44 seater non-AC buses. Ask about car options, amenities, luggage arrangements and current availability directly with the business.</p>
+          </div>
+          <Link className="button button-dark" to="/booking">Ask about your trip <ArrowUpRight size={17} /></Link>
+        </div>
       </div>
     </div>
   );
